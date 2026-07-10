@@ -45,7 +45,7 @@ Rollback = repoint the `public_html` symlink to the previous `releases/<ts>` and
 
 2. ✅ **MySQL setup** — DONE. Database `knowledgetest` and scoped user `knowledgetest`@`localhost` created; credentials verified with a working `SELECT 1;`. Password recorded only in `shared/.env` on the server (step 5), never in git.
 
-3. ✅ **Apache vhost** — DONE. `10xdevs.industryweb.pl` already configured (hand-rolled Apache config, not a hosting panel) with `DocumentRoot` pointed under `/home/iw10xdevs/`. Confirm before first deploy that `DocumentRoot` targets `public_html` specifically (the atomic-swap symlink target from the layout below), not a release subfolder, and that `mod_rewrite` is enabled for Laravel's `try_files`-equivalent (`FallbackResource /index.php` or an `.htaccess`-driven rewrite).
+3. ✅ **Apache vhost** — DONE. `10xdevs.industryweb.pl` already configured. **Correction (2026-07-10):** this is actually a **DirectAdmin-managed** vhost (`AssignUserID`, `/usr/local/etc/apache24/...`, `/home/logs/apache/...` — FreeBSD/DirectAdmin CustomBuild conventions), not the hand-rolled config we first assumed — editing the auto-generated vhost file directly risks being overwritten on panel regeneration. `DocumentRoot` is a fixed literal path `/home/iw10xdevs/public_html/public/`; Apache resolves this through the `public_html` symlink transparently at request time, so the atomic symlink-swap layout works without changing the vhost, **provided `FollowSymLinks` is enabled** — handled via `public/.htaccess` (version-controlled, redeployed every release) rather than editing the panel-managed vhost, since `AllowOverride` here already permits `Options=All`.
 
 4. ✅ **TLS** — DONE. Certificate for `10xdevs.industryweb.pl` already issued and confirmed via `certbot certificates`. Still verify the renewal timer is enabled (`systemctl list-timers | grep certbot`) per the risk register in infrastructure.md before considering this fully closed.
 
@@ -70,6 +70,12 @@ Rollback = repoint the `public_html` symlink to the previous `releases/<ts>` and
    - The server needs its own deploy key with **read access to `industryweb-zz/10xdevs`** for `git clone` inside `release.sh` to work (separate from the GitHub Actions SSH-in key).
 
 8. **First manual run** — trigger the first deploy (either by pushing to `master` or running the script by hand over SSH) to prove the pipeline end-to-end, then verify `https://10xdevs.industryweb.pl` serves the Laravel welcome page over valid TLS.
+
+   **Pre-flight discovered during execution (2026-07-10):** `DocumentRoot` is `/home/iw10xdevs/public_html/public/` — Apache follows the `public_html` symlink transparently, so `release.sh`'s existing `ln -sfn "$RELEASE_DIR/public" "$CURRENT_LINK"` needs no code change. BUT `/home/iw10xdevs/public_html` is currently a **real directory with files** (not yet a symlink), so the very first `ln -sfn` would land the new symlink *inside* it rather than replacing it. One-time manual fix required before the first run:
+   ```bash
+   mv /home/iw10xdevs/public_html /home/iw10xdevs/public_html.bak-preexisting
+   ```
+   After that, `release.sh` creates `public_html` as a symlink cleanly on its first run. `FollowSymLinks` is enabled via `Options +FollowSymLinks` added to `public/.htaccess` in the repo (not the DirectAdmin-managed vhost, which permits this via `AllowOverride ... Options=All`) — committed alongside the deploy pipeline.
 
 ## Out of scope (matches infrastructure.md)
 
