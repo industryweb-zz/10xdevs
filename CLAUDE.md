@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-**KnowledgeTest** — paste source text, get AI-generated flashcards, study them in one flow. Greenfield, solo, 3-week MVP. See `@context/foundation/prd.md` for the full product spec and `@context/foundation/tech-stack.md` for the stack rationale.
+**KnowledgeTest** — paste source text, get AI-generated flashcards, study them in one flow. Greenfield, solo, 3-week MVP. See `@context/foundation/prd.md` for the full product spec, `@context/foundation/tech-stack.md` for the stack rationale, and `@context/foundation/infrastructure.md` for the deployment platform decision (Railway, researched and bias-checked — not self-host, despite two early commits building a DirectAdmin/Apache deploy pipeline that was later superseded and removed).
 
-The repo is currently an **unmodified Laravel 13 skeleton** (single "Initial commit: Laravel scaffold" in history) — no auth, no controllers, no models beyond the default `User`, no AI integration yet, despite the tech-stack calling for Laravel Breeze auth and LLM-backed flashcard generation. Don't assume any of that exists; check before referencing it.
+The repo is currently an **unmodified Laravel 13 skeleton** — no auth, no controllers, no models beyond the default `User`, no AI integration yet, despite the tech-stack calling for Laravel Breeze auth and LLM-backed flashcard generation. Don't assume any of that exists; check before referencing it. The `deploy/` directory is empty (an earlier self-hosted release script was removed when the deployment target moved to Railway) — don't assume a deploy pipeline exists on disk.
 
 ## Commands
 
