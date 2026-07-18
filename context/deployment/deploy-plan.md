@@ -4,7 +4,7 @@ planned_at: 2026-07-14
 platform: railway
 db_engine: postgresql
 llm_provider: anthropic
-status: planned
+status: deployed
 ---
 
 # Railway Deploy Plan
@@ -19,12 +19,12 @@ Repo-side artifacts already created as part of this plan: `nixpacks.toml` (pins 
 
 ## Phase 1 — Railway account & project provisioning (manual, human gate)
 
-- [ ] Create/confirm a Railway account.
-- [ ] Install the Railway CLI (`npm i -g @railway/cli`) and run `railway login`.
-- [ ] From the repo root, run `railway init` (project name: `knowledge-test`).
-- [ ] Run `railway add` to provision a co-located **PostgreSQL** service in the same project.
-- [ ] Enable the native **Backups** feature on the Postgres service before any production migration runs.
-- [ ] Set a usage alert / spending cap in the Railway dashboard billing settings.
+- [X] Create/confirm a Railway account.
+- [X] Install the Railway CLI (`npm i -g @railway/cli`) and run `railway login`.
+- [X] From the repo root, run `railway init` (project name: `knowledge-test`).
+- [X] Run `railway add` to provision a co-located **PostgreSQL** service in the same project.
+- [~] Enable the native **Backups** feature on the Postgres service before any production migration runs. — SKIPPED: Backups is Pro-plan-only, not available on the current Railway plan. Risk carried forward: no automated snapshot before `artisan migrate --force` (see Phase 6).
+- [~] Set a usage alert / spending cap in the Railway dashboard billing settings. — SKIPPED: currently on the $5 trial credit, which is a hard ceiling by itself; revisit once on a paid usage-based plan.
 
 ## Phase 2 — Repo-side Railway config
 
@@ -34,29 +34,29 @@ Repo-side artifacts already created as part of this plan: `nixpacks.toml` (pins 
 
 ## Phase 3 — Environment variables & secrets (CLI only, no dashboard edits)
 
-- [ ] `railway variables set APP_KEY=$(php artisan key:generate --show)` — generate fresh, do not reuse the key in `.env.scaffold`.
-- [ ] `railway variables set APP_ENV=production APP_DEBUG=false`
+- [x] `railway variables set APP_KEY=$(php artisan key:generate --show)` — generate fresh, do not reuse the key in `.env.scaffold`.
+- [x] `railway variables set APP_ENV=production APP_DEBUG=false`
 - [ ] Set `APP_URL` after the first deploy assigns a domain.
-- [ ] Confirm Postgres connection vars are auto-injected (`railway variables`) once the DB service is linked; set `DB_CONNECTION=pgsql` explicitly.
-- [ ] Leave `SESSION_DRIVER`, `QUEUE_CONNECTION`, `CACHE_STORE` as `database` (no Redis in scope; `tech-stack.md` has `has_background_jobs: false`).
-- [ ] `railway variables set ANTHROPIC_API_KEY=...` — key obtained from the Anthropic Console (external to this repo).
+- [x] Confirm Postgres connection vars are auto-injected (`railway variables`) once the DB service is linked; set `DB_CONNECTION=pgsql` explicitly.
+- [x] Leave `SESSION_DRIVER`, `QUEUE_CONNECTION`, `CACHE_STORE` as `database` (no Redis in scope; `tech-stack.md` has `has_background_jobs: false`) — confirmed already `database` in `.env.example`, no override needed.
+- [x] `railway variables set ANTHROPIC_API_KEY=...` — key obtained from the Anthropic Console (external to this repo).
 
 ## Phase 4 — CI/CD
 
 - [x] `.github/workflows/deploy.yml` rewritten: drops `appleboy/ssh-action`, installs the Railway CLI, runs `railway up --service knowledge-test --ci` gated on `secrets.RAILWAY_TOKEN`. Trigger kept as `push: branches: [master]` (matches the repo's actual default branch).
-- [ ] Generate a **project-scoped** Railway API token (not account-wide) and add it as the `RAILWAY_TOKEN` secret in GitHub repo settings.
+- [x] Generate a **project-scoped** Railway API token (not account-wide) and add it as the `RAILWAY_TOKEN` secret in GitHub repo settings.
 - [ ] For the first several deploys, run `artisan migrate --force` manually (`railway run php artisan migrate --force`) rather than wiring it into the automated workflow — confirm the Phase 1 backup is active first, every time.
 
 ## Phase 5 — First deploy & verification
 
-- [ ] `railway up` (or push to `master`) for the first deploy; watch `railway logs` for the Nixpacks build, confirm PHP/Node versions match `nixpacks.toml`.
-- [ ] `railway run php artisan migrate --force` against the new Postgres DB, only after confirming backups are enabled.
-- [ ] Hit the Railway-assigned URL, confirm the app responds.
-- [ ] Set `APP_URL` to match the actual assigned domain (mismatches break Laravel's signed routes / URL generation).
+- [x] `railway up` (or push to `master`) for the first deploy; watch `railway logs` for the Nixpacks build, confirm PHP/Node versions match `nixpacks.toml`. NOTE: the first `railway up --ci` run had no `--service` flag and deployed onto the linked **Postgres** service by mistake, overwriting its image and crashing it. Recovered via dashboard redeploy of `ghcr.io/railwayapp-templates/postgres-ssl:18`; volume (`postgres-volume`) was untouched, no data loss. A separate `knowledge-test-app` service was then created for the app; all env vars (which had also landed on Postgres by mistake) were reset on the correct service via reference variables (`${{Postgres.PGHOST}}` etc.) and the stray copies removed from Postgres. Lesson: always pass `--service <name>` explicitly with `railway up`/`railway variables set` once more than one service exists in a project.
+- [x] `railway ssh --service knowledge-test-app -- php artisan migrate --force` against the Postgres DB (ran via SSH into the deployed container, not `railway run`, since `railway run` executes locally and this machine lacks `pdo_pgsql`). No native Backups were enabled (Pro-plan-only, skipped in Phase 1) but the volume survived the incident regardless.
+- [x] Hit the Railway-assigned URL, confirm the app responds — `HTTP 200` at `https://knowledge-test-app-production.up.railway.app`.
+- [x] Set `APP_URL` to match the actual assigned domain — done via `railway variables set APP_URL=https://knowledge-test-app-production.up.railway.app --service knowledge-test-app`.
 
 ## Phase 6 — Operational guardrails
 
-- [ ] Rollback (`railway redeploy` to a prior deployment ID) does **not** reverse a DB migration — take a Postgres snapshot before every `artisan migrate --force` in production, not just the first one.
+- [ ] Rollback (`railway redeploy` to a prior deployment ID) does **not** reverse a DB migration — take a Postgres snapshot before every `artisan migrate --force` in production, not just the first one. Since native Backups is unavailable on this plan, snapshot manually: `railway connect postgres` → `pg_dump` to a local file, or `railway run pg_dump $DATABASE_URL > backup.sql`, before each migration.
 - [ ] Review the Railway billing dashboard monthly during the MVP period (usage-based pricing has no built-in ceiling).
 
 ## Known gaps carried forward (not part of this deploy plan)
