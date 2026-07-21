@@ -79,7 +79,7 @@ Bring in Laravel Breeze's Blade + Alpine stack as-is and confirm it boots, with 
 
 ### Overview
 
-Remove the password-reset and email-verification surfaces Breeze added, drop the `verified` middleware requirement, and replace the dashboard view with a minimal placeholder.
+Remove the password-reset and email-verification surfaces Breeze added, drop the `verified` middleware requirement, and replace the dashboard view with a minimal placeholder. `confirm-password`/`password.update` (changing your password while logged in) are intentionally out of scope for removal — that's a distinct feature from the forgot-password/reset flow and doesn't depend on mail delivery.
 
 ### Changes Required:
 
