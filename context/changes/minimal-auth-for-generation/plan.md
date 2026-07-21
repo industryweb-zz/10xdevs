@@ -232,12 +232,12 @@ No new migrations — the default `users` table already has every column Breeze'
 
 #### Automated
 
-- [x] 3.1 `php artisan test` passes in full
-- [x] 3.2 `vendor/bin/pint` reports no style violations on changed files
+- [x] 3.1 `php artisan test` passes in full — 281d04b
+- [x] 3.2 `vendor/bin/pint` reports no style violations on changed files — 281d04b
 
 #### Manual
 
-- [ ] 3.3 Register → immediate auth → `/dashboard` placeholder
-- [ ] 3.4 Logout → guest state, `/dashboard` unreachable
-- [ ] 3.5 Log back in with same credentials
-- [ ] 3.6 Repeated wrong-password submissions trigger throttle response
+- [x] 3.3 Register → immediate auth → `/dashboard` placeholder — 281d04b
+- [x] 3.4 Logout → guest state, `/dashboard` unreachable — 281d04b
+- [x] 3.5 Log back in with same credentials — 281d04b
+- [x] 3.6 Repeated wrong-password submissions trigger throttle response — 281d04b
