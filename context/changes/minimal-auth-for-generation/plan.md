@@ -218,22 +218,22 @@ No new migrations — the default `users` table already has every column Breeze'
 
 #### Automated
 
-- [x] 2.1 Password-reset and email-verification routes no longer listed
-- [x] 2.2 `php artisan test` passes with trimmed suite
-- [x] 2.3 `npm run build` still completes without error
+- [x] 2.1 Password-reset and email-verification routes no longer listed — d7c5c27
+- [x] 2.2 `php artisan test` passes with trimmed suite — d7c5c27
+- [x] 2.3 `npm run build` still completes without error — d7c5c27
 
 #### Manual
 
-- [ ] 2.4 `/login` shows no "Forgot your password?" link
-- [ ] 2.5 New registration lands directly on `/dashboard` placeholder, no verification prompt
-- [ ] 2.6 Logged-out access to `/dashboard` redirects to `/login`
+- [x] 2.4 `/login` shows no "Forgot your password?" link — d7c5c27
+- [x] 2.5 New registration lands directly on `/dashboard` placeholder, no verification prompt — d7c5c27
+- [x] 2.6 Logged-out access to `/dashboard` redirects to `/login` — d7c5c27
 
 ### Phase 3: Verify the FR-001/002/003 loop
 
 #### Automated
 
-- [ ] 3.1 `php artisan test` passes in full
-- [ ] 3.2 `vendor/bin/pint` reports no style violations on changed files
+- [x] 3.1 `php artisan test` passes in full
+- [x] 3.2 `vendor/bin/pint` reports no style violations on changed files
 
 #### Manual
 
