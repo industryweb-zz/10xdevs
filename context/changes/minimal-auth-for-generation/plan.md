@@ -204,23 +204,23 @@ No new migrations — the default `users` table already has every column Breeze'
 
 #### Automated
 
-- [ ] 1.1 Breeze package installed (`composer show laravel/breeze`)
-- [ ] 1.2 Auth routes present (`php artisan route:list` shows login/register/logout/dashboard)
-- [ ] 1.3 `npm run build` completes without error
-- [ ] 1.4 `php artisan test` passes (Breeze's generated tests, untouched)
+- [x] 1.1 Breeze package installed (`composer show laravel/breeze`) — c6d5b6d
+- [x] 1.2 Auth routes present (`php artisan route:list` shows login/register/logout/dashboard) — c6d5b6d
+- [x] 1.3 `npm run build` completes without error — c6d5b6d
+- [x] 1.4 `php artisan test` passes (Breeze's generated tests, untouched) — c6d5b6d
 
 #### Manual
 
-- [ ] 1.5 `/register` and `/login` render styled correctly
-- [ ] 1.6 Registering a new user logs in and redirects to `/dashboard`
+- [x] 1.5 `/register` and `/login` render styled correctly — c6d5b6d
+- [x] 1.6 Registering a new user logs in and redirects to `/dashboard` — c6d5b6d
 
 ### Phase 2: Trim to MVP scope
 
 #### Automated
 
-- [ ] 2.1 Password-reset and email-verification routes no longer listed
-- [ ] 2.2 `php artisan test` passes with trimmed suite
-- [ ] 2.3 `npm run build` still completes without error
+- [x] 2.1 Password-reset and email-verification routes no longer listed
+- [x] 2.2 `php artisan test` passes with trimmed suite
+- [x] 2.3 `npm run build` still completes without error
 
 #### Manual
 
