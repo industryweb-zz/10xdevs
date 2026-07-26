@@ -1,7 +1,7 @@
 ---
 change_id: generate-and-study-flashcards
 title: Generate flashcards from pasted text and study them with a score
-status: implemented
+status: impl_reviewed
 created: 2026-07-26
 updated: 2026-07-26
 archived_at: null

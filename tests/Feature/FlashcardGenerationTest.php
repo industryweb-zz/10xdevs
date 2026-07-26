@@ -74,6 +74,7 @@ class FlashcardGenerationTest extends TestCase
         ]);
 
         $response->assertSessionHasErrors('text');
+        $this->assertNull(session()->getOldInput('text'));
         $this->assertDatabaseCount('flashcard_sets', 0);
     }
 
