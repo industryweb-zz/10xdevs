@@ -71,6 +71,8 @@ class AnthropicFlashcardGenerator implements FlashcardGenerator
             one into an open question with a complete answer derived from the text.
             Generate between 5 and 15 flashcards depending on how much the text covers.
             Also produce a short (3-8 word) title summarizing the source text's topic.
+            Write the title, questions, and answers in the same language as the source
+            text below.
 
             Source text:
             """

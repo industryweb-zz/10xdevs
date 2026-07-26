@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FlashcardSetController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StudySessionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,6 +20,9 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/flashcard-sets', [FlashcardSetController::class, 'store'])->name('flashcard-sets.store');
     Route::get('/flashcard-sets/{flashcardSet}', [FlashcardSetController::class, 'show'])->name('flashcard-sets.show');
+
+    Route::get('/flashcard-sets/{flashcardSet}/study', [StudySessionController::class, 'study'])->name('flashcard-sets.study');
+    Route::post('/flashcard-sets/{flashcardSet}/results', [StudySessionController::class, 'results'])->name('flashcard-sets.results');
 });
 
 require __DIR__.'/auth.php';

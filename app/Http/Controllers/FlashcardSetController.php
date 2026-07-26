@@ -20,7 +20,7 @@ class FlashcardSetController extends Controller
             $generated = $this->generator->generate($request->validated('text'));
         } catch (FlashcardGenerationException) {
             return redirect()->route('dashboard')
-                ->with('error', 'Something went wrong while generating your flashcards. Please try again.');
+                ->with('error', __('Something went wrong while generating your flashcards. Please try again.'));
         }
 
         $flashcardSet = DB::transaction(function () use ($request, $generated) {

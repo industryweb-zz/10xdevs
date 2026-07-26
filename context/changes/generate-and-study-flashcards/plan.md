@@ -321,28 +321,28 @@ Not applicable — no existing data to migrate; this is new schema on a greenfie
 
 #### Automated
 
-- [x] 2.1 Feature test: valid paste → redirect to preview + DB rows created
-- [x] 2.2 Feature test: generator failure → flash error, no row created
-- [x] 2.3 Feature test: text over 8000 chars fails validation
-- [x] 2.4 Feature test: viewing another user's set returns 403
-- [x] 2.5 Full suite passes: `php artisan test`
-- [x] 2.6 Linting passes: `vendor/bin/pint --test`
+- [x] 2.1 Feature test: valid paste → redirect to preview + DB rows created — bf05fec
+- [x] 2.2 Feature test: generator failure → flash error, no row created — bf05fec
+- [x] 2.3 Feature test: text over 8000 chars fails validation — bf05fec
+- [x] 2.4 Feature test: viewing another user's set returns 403 — bf05fec
+- [x] 2.5 Full suite passes: `php artisan test` — bf05fec
+- [x] 2.6 Linting passes: `vendor/bin/pint --test` — bf05fec
 
 #### Manual
 
-- [ ] 2.7 Real paste on `/dashboard` produces a flashcard preview within a few seconds
-- [ ] 2.8 Generation failure shows a clean error with no pasted text retained
-- [ ] 2.9 "Start session" link present and correct
+- [x] 2.7 Real paste on `/dashboard` produces a flashcard preview within a few seconds — bf05fec
+- [x] 2.8 Generation failure shows a clean error with no pasted text retained — bf05fec
+- [ ] 2.9 "Start session" link present and correct (deferred — link added in Phase 3 once the study route exists)
 
 ### Phase 3: Study session (flip → rate → score)
 
 #### Automated
 
-- [ ] 3.1 Feature test: valid counts render correct score
-- [ ] 3.2 Feature test: mismatched counts return 422
-- [ ] 3.3 Feature test: cross-user access returns 403
-- [ ] 3.4 Full suite passes: `php artisan test`
-- [ ] 3.5 Linting passes: `vendor/bin/pint --test`
+- [x] 3.1 Feature test: valid counts render correct score
+- [x] 3.2 Feature test: mismatched counts return 422
+- [x] 3.3 Feature test: cross-user access returns 403
+- [x] 3.4 Full suite passes: `php artisan test`
+- [x] 3.5 Linting passes: `vendor/bin/pint --test`
 
 #### Manual
 
