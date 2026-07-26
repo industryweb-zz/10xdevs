@@ -1,10 +1,10 @@
 ---
 change_id: saved-sets-list
 title: Saved flashcard sets list (roadmap S-03)
-status: impl_reviewed
+status: archived
 created: 2026-07-26
 updated: 2026-07-26
-archived_at: null
+archived_at: 2026-07-26T17:27:21Z
 ---
 
 ## Notes

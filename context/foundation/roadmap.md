@@ -31,7 +31,7 @@ Ręczne tworzenie fiszek z materiału edukacyjnego jest czasochłonne i wymaga w
 | ---- | ------------------------------ | ----------------------------------------------------------------------- | ---------- | --------------------------------------------- | -------- |
 | S-01 | minimal-auth-for-generation     | założyć konto, zalogować się i wylogować                                 | —          | FR-001, FR-002, FR-003                        | done    |
 | S-02 | generate-and-study-flashcards   | wkleić tekst, zobaczyć wygenerowane fiszki i przejść sesję nauki z wynikiem | S-01       | US-01, FR-004, FR-005, FR-006, FR-007, FR-008, FR-009 | done |
-| S-03 | saved-sets-list                 | zobaczyć listę swoich zapisanych zestawów fiszek                          | S-02       | FR-010                                          | proposed |
+| S-03 | saved-sets-list                 | zobaczyć listę swoich zapisanych zestawów fiszek                          | S-02       | FR-010                                          | done |
 
 ## Stan bazowy
 
@@ -84,7 +84,7 @@ _Nie zidentyfikowano żadnych Foundations._ Jedyny brakujący element bazowy o c
 - **Blockers:** —
 - **Unknowns:** —
 - **Risk:** Sekwencjonowany po S-02, bo lista jest bezużyteczna bez co najmniej jednego wygenerowanego zestawu do wyświetlenia; niski samodzielny ryzyko techniczne — to prosty odczyt danych zapisanych w S-02.
-- **Status:** proposed
+- **Status:** done
 
 ## Backlog Handoff
 
@@ -112,3 +112,4 @@ Brak — PRD nie zawiera otwartych pytań (`quality_check_status: accepted` z se
 
 - **S-01: użytkownik może założyć konto (email + hasło), zalogować się (email + hasło lub tożsamość zewnętrzna) i wylogować się.** — Archived 2026-07-21 → `context/archive/2026-07-21-minimal-auth-for-generation/`. Lesson: —.
 - **S-02: zalogowany użytkownik wkleja tekst źródłowy, w ciągu kilku sekund widzi gotowy zestaw fiszek (pytanie–odpowiedź), rozpoczyna sesję nauki, dla każdej fiszki odkrywa odpowiedź i ocenia się jako "znałem"/"nie znałem", a na koniec widzi wynik liczbowy.** — Archived 2026-07-26 → `context/archive/2026-07-26-generate-and-study-flashcards/`. Lesson: —.
+- **S-03: zalogowany użytkownik widzi listę swoich zapisanych zestawów fiszek.** — Archived 2026-07-26 → `context/archive/2026-07-26-saved-sets-list/`. Lesson: —.
