@@ -332,20 +332,20 @@ Not applicable — no existing data to migrate; this is new schema on a greenfie
 
 - [x] 2.7 Real paste on `/dashboard` produces a flashcard preview within a few seconds — bf05fec
 - [x] 2.8 Generation failure shows a clean error with no pasted text retained — bf05fec
-- [ ] 2.9 "Start session" link present and correct (deferred — link added in Phase 3 once the study route exists)
+- [x] 2.9 "Start session" link present and correct — cc37a72
 
 ### Phase 3: Study session (flip → rate → score)
 
 #### Automated
 
-- [x] 3.1 Feature test: valid counts render correct score
-- [x] 3.2 Feature test: mismatched counts return 422
-- [x] 3.3 Feature test: cross-user access returns 403
-- [x] 3.4 Full suite passes: `php artisan test`
-- [x] 3.5 Linting passes: `vendor/bin/pint --test`
+- [x] 3.1 Feature test: valid counts render correct score — cc37a72
+- [x] 3.2 Feature test: mismatched counts return 422 — cc37a72
+- [x] 3.3 Feature test: cross-user access returns 403 — cc37a72
+- [x] 3.4 Full suite passes: `php artisan test` — cc37a72
+- [x] 3.5 Linting passes: `vendor/bin/pint --test` — cc37a72
 
 #### Manual
 
-- [ ] 3.6 Full browser session: flip, rate, correct final score shown
-- [ ] 3.7 Refresh mid-session resets progress (expected)
-- [ ] 3.8 End-to-end loop works for a fresh account
+- [x] 3.6 Full browser session: flip, rate, correct final score shown — cc37a72
+- [x] 3.7 Refresh mid-session resets progress (expected) — cc37a72
+- [x] 3.8 End-to-end loop works for a fresh account — cc37a72
