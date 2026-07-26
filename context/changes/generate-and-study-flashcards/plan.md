@@ -307,26 +307,26 @@ Not applicable — no existing data to migrate; this is new schema on a greenfie
 
 #### Automated
 
-- [x] 1.1 Migrations apply cleanly: `php artisan migrate`
-- [x] 1.2 Model relationship/factory tests pass: `php artisan test --filter=FlashcardSet`
-- [x] 1.3 Full suite still passes: `php artisan test`
-- [x] 1.4 Linting passes: `vendor/bin/pint --test`
+- [x] 1.1 Migrations apply cleanly: `php artisan migrate` — 03a9d46
+- [x] 1.2 Model relationship/factory tests pass: `php artisan test --filter=FlashcardSet` — 03a9d46
+- [x] 1.3 Full suite still passes: `php artisan test` — 03a9d46
+- [x] 1.4 Linting passes: `vendor/bin/pint --test` — 03a9d46
 
 #### Manual
 
-- [x] 1.5 `anthropic-ai/sdk` installed and `composer install` succeeds
-- [x] 1.6 `FlashcardGenerator::class` resolves from the container via `php artisan tinker`
+- [x] 1.5 `anthropic-ai/sdk` installed and `composer install` succeeds — 03a9d46
+- [x] 1.6 `FlashcardGenerator::class` resolves from the container via `php artisan tinker` — 03a9d46
 
 ### Phase 2: Generation flow (paste → preview)
 
 #### Automated
 
-- [ ] 2.1 Feature test: valid paste → redirect to preview + DB rows created
-- [ ] 2.2 Feature test: generator failure → flash error, no row created
-- [ ] 2.3 Feature test: text over 8000 chars fails validation
-- [ ] 2.4 Feature test: viewing another user's set returns 403
-- [ ] 2.5 Full suite passes: `php artisan test`
-- [ ] 2.6 Linting passes: `vendor/bin/pint --test`
+- [x] 2.1 Feature test: valid paste → redirect to preview + DB rows created
+- [x] 2.2 Feature test: generator failure → flash error, no row created
+- [x] 2.3 Feature test: text over 8000 chars fails validation
+- [x] 2.4 Feature test: viewing another user's set returns 403
+- [x] 2.5 Full suite passes: `php artisan test`
+- [x] 2.6 Linting passes: `vendor/bin/pint --test`
 
 #### Manual
 
