@@ -139,14 +139,14 @@ Not applicable — no schema changes.
 
 #### Automated
 
-- [x] 1.1 Feature tests pass: `php artisan test --filter=FlashcardSetIndexTest`
-- [x] 1.2 Full suite passes: `php artisan test`
-- [x] 1.3 Pint formatting passes: `vendor/bin/pint --test`
+- [x] 1.1 Feature tests pass: `php artisan test --filter=FlashcardSetIndexTest` — 270a407
+- [x] 1.2 Full suite passes: `php artisan test` — 270a407
+- [x] 1.3 Pint formatting passes: `vendor/bin/pint --test` — 270a407
 
 #### Manual
 
-- [x] 1.4 Logged in as a user with 2+ flashcard sets, visiting `/flashcard-sets` shows them newest-first with correct titles/dates, and each links to the right detail page.
-- [x] 1.5 Logged in as a user with zero sets, `/flashcard-sets` shows the empty-state message and a working link back to the dashboard.
-- [x] 1.6 A user cannot see another user's sets by visiting `/flashcard-sets` (only their own `flashcardSets()` relation is queried).
-- [x] 1.7 The "My sets" nav link is visible and highlighted as active on both desktop and mobile nav when on the list page.
-- [x] 1.8 All visible text on the page renders in Polish.
+- [x] 1.4 Logged in as a user with 2+ flashcard sets, visiting `/flashcard-sets` shows them newest-first with correct titles/dates, and each links to the right detail page. — 270a407
+- [x] 1.5 Logged in as a user with zero sets, `/flashcard-sets` shows the empty-state message and a working link back to the dashboard. — 270a407
+- [x] 1.6 A user cannot see another user's sets by visiting `/flashcard-sets` (only their own `flashcardSets()` relation is queried). — 270a407
+- [x] 1.7 The "My sets" nav link is visible and highlighted as active on both desktop and mobile nav when on the list page. — 270a407
+- [x] 1.8 All visible text on the page renders in Polish. — 270a407
