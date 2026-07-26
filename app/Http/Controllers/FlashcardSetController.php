@@ -7,12 +7,20 @@ use App\Http\Requests\GenerateFlashcardsRequest;
 use App\Models\FlashcardSet;
 use App\Services\FlashcardGenerator;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class FlashcardSetController extends Controller
 {
     public function __construct(private readonly FlashcardGenerator $generator) {}
+
+    public function index(Request $request): View
+    {
+        return view('flashcard-sets.index', [
+            'flashcardSets' => $request->user()->flashcardSets()->latest()->get(),
+        ]);
+    }
 
     public function store(GenerateFlashcardsRequest $request): RedirectResponse
     {

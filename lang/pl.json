@@ -32,5 +32,8 @@
     "Start session": "Rozpocznij sesję",
     ":known of :total known": ":known z :total znanych",
     "Card :current of :total": "Karta :current z :total",
-    "Something went wrong while generating your flashcards. Please try again.": "Coś poszło nie tak podczas generowania fiszek. Spróbuj ponownie."
+    "Something went wrong while generating your flashcards. Please try again.": "Coś poszło nie tak podczas generowania fiszek. Spróbuj ponownie.",
+    "My sets": "Moje zestawy",
+    "You don't have any flashcard sets yet.": "Nie masz jeszcze żadnych zestawów fiszek.",
+    "Generate your first set": "Wygeneruj swój pierwszy zestaw"
 }

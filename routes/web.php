@@ -19,6 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::post('/flashcard-sets', [FlashcardSetController::class, 'store'])->name('flashcard-sets.store');
+    Route::get('/flashcard-sets', [FlashcardSetController::class, 'index'])->name('flashcard-sets.index');
     Route::get('/flashcard-sets/{flashcardSet}', [FlashcardSetController::class, 'show'])->name('flashcard-sets.show');
 
     Route::get('/flashcard-sets/{flashcardSet}/study', [StudySessionController::class, 'study'])->name('flashcard-sets.study');
