@@ -3,7 +3,7 @@ project: "KnowledgeTest"
 version: 1
 status: draft
 created: 2026-07-19
-updated: 2026-07-21
+updated: 2026-07-26
 prd_version: 1
 main_goal: market-feedback
 top_blocker: capacity
@@ -30,7 +30,7 @@ Ręczne tworzenie fiszek z materiału edukacyjnego jest czasochłonne i wymaga w
 | ID   | Change ID                     | Wynik (użytkownik może …)                                              | Zależności | Odniesienia PRD                              | Status   |
 | ---- | ------------------------------ | ----------------------------------------------------------------------- | ---------- | --------------------------------------------- | -------- |
 | S-01 | minimal-auth-for-generation     | założyć konto, zalogować się i wylogować                                 | —          | FR-001, FR-002, FR-003                        | done    |
-| S-02 | generate-and-study-flashcards   | wkleić tekst, zobaczyć wygenerowane fiszki i przejść sesję nauki z wynikiem | S-01       | US-01, FR-004, FR-005, FR-006, FR-007, FR-008, FR-009 | proposed |
+| S-02 | generate-and-study-flashcards   | wkleić tekst, zobaczyć wygenerowane fiszki i przejść sesję nauki z wynikiem | S-01       | US-01, FR-004, FR-005, FR-006, FR-007, FR-008, FR-009 | done |
 | S-03 | saved-sets-list                 | zobaczyć listę swoich zapisanych zestawów fiszek                          | S-02       | FR-010                                          | proposed |
 
 ## Stan bazowy
@@ -72,7 +72,7 @@ _Nie zidentyfikowano żadnych Foundations._ Jedyny brakujący element bazowy o c
 - **Blockers:** —
 - **Unknowns:** —
 - **Risk:** Ten slice łączy generowanie i sesję nauki w jeden kawałek zamiast dzielić je dalej, celowo — PRD ma dokładnie jedną historyjkę użytkownika (US-01) opisującą to jako jeden ciągły przepływ, a fiszki bez sesji nauki (albo sesja bez fiszek) nie mają żadnej samodzielnej wartości dla użytkownika. Główne ryzyko techniczne: czy generowanie AI zmieści się w budżecie 10 sekund (NFR) i czy jakość wygenerowanych fiszek będzie wystarczająca, by walidacja miała sens.
-- **Status:** proposed
+- **Status:** done
 
 ### S-03: Lista zapisanych zestawów fiszek
 
@@ -111,3 +111,4 @@ Brak — PRD nie zawiera otwartych pytań (`quality_check_status: accepted` z se
 ## Done
 
 - **S-01: użytkownik może założyć konto (email + hasło), zalogować się (email + hasło lub tożsamość zewnętrzna) i wylogować się.** — Archived 2026-07-21 → `context/archive/2026-07-21-minimal-auth-for-generation/`. Lesson: —.
+- **S-02: zalogowany użytkownik wkleja tekst źródłowy, w ciągu kilku sekund widzi gotowy zestaw fiszek (pytanie–odpowiedź), rozpoczyna sesję nauki, dla każdej fiszki odkrywa odpowiedź i ocenia się jako "znałem"/"nie znałem", a na koniec widzi wynik liczbowy.** — Archived 2026-07-26 → `context/archive/2026-07-26-generate-and-study-flashcards/`. Lesson: —.
