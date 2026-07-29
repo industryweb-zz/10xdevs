@@ -44,4 +44,18 @@ class FlashcardSetIndexTest extends TestCase
 
         $response->assertRedirect(route('login'));
     }
+
+    public function test_index_response_never_includes_another_users_flashcard_set_id(): void
+    {
+        $user = User::factory()->create();
+        $otherUser = User::factory()->create();
+
+        FlashcardSet::factory()->for($user)->create();
+        $otherUsersSet = FlashcardSet::factory()->for($otherUser)->create();
+
+        $response = $this->actingAs($user)->get(route('flashcard-sets.index'));
+
+        $response->assertOk();
+        $response->assertViewHas('flashcardSets', fn ($sets) => $sets->doesntContain('id', $otherUsersSet->id));
+    }
 }

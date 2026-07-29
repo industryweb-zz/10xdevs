@@ -234,22 +234,22 @@ Not applicable — no schema or data changes.
 
 #### Automated
 
-- [x] 1.1 New test file passes: `php artisan test --filter=FlashcardSetOwnershipTest`
-- [x] 1.2 Full suite still passes: `php artisan test`
-- [x] 1.3 Pint reports no formatting issues on new files: `vendor/bin/pint --test`
+- [x] 1.1 New test file passes: `php artisan test --filter=FlashcardSetOwnershipTest` — dc3ce50
+- [x] 1.2 Full suite still passes: `php artisan test` — dc3ce50
+- [x] 1.3 Pint reports no formatting issues on new files: `vendor/bin/pint --test` — dc3ce50
 
 #### Manual
 
-- [ ] 1.4 Temporarily remove an `abort_unless` line and confirm the sweep test fails, then restore it
+- [x] 1.4 Temporarily remove an `abort_unless` line and confirm the sweep test fails, then restore it — dc3ce50
 
 ### Phase 2: Index scoping test + cookbook update
 
 #### Automated
 
-- [ ] 2.1 New index test passes: `php artisan test --filter=FlashcardSetIndexTest`
-- [ ] 2.2 Full suite still passes: `php artisan test`
-- [ ] 2.3 Pint reports no formatting issues: `vendor/bin/pint --test`
+- [x] 2.1 New index test passes: `php artisan test --filter=FlashcardSetIndexTest`
+- [x] 2.2 Full suite still passes: `php artisan test`
+- [x] 2.3 Pint reports no formatting issues: `vendor/bin/pint --test`
 
 #### Manual
 
-- [ ] 2.4 Read the updated §6.2/§6.4 in `test-plan.md` and confirm it's followable
+- [x] 2.4 Read the updated §6.2/§6.4 in `test-plan.md` and confirm it's followable
