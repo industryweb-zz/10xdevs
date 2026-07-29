@@ -246,10 +246,10 @@ Not applicable — no schema or data changes.
 
 #### Automated
 
-- [x] 2.1 New index test passes: `php artisan test --filter=FlashcardSetIndexTest`
-- [x] 2.2 Full suite still passes: `php artisan test`
-- [x] 2.3 Pint reports no formatting issues: `vendor/bin/pint --test`
+- [x] 2.1 New index test passes: `php artisan test --filter=FlashcardSetIndexTest` — dcff80d
+- [x] 2.2 Full suite still passes: `php artisan test` — dcff80d
+- [x] 2.3 Pint reports no formatting issues: `vendor/bin/pint --test` — dcff80d
 
 #### Manual
 
-- [x] 2.4 Read the updated §6.2/§6.4 in `test-plan.md` and confirm it's followable
+- [x] 2.4 Read the updated §6.2/§6.4 in `test-plan.md` and confirm it's followable — dcff80d
