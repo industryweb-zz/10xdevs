@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/flashcard-sets', [FlashcardSetController::class, 'index'])->name('flashcard-sets.index');
     Route::get('/flashcard-sets/{flashcardSet}', [FlashcardSetController::class, 'show'])->name('flashcard-sets.show');
 
+    Route::patch('/flashcard-sets/{flashcardSet}/flashcards/{flashcard}', [FlashcardController::class, 'update'])->name('flashcards.update');
     Route::delete('/flashcard-sets/{flashcardSet}/flashcards/{flashcard}', [FlashcardController::class, 'destroy'])->name('flashcards.destroy');
 
     Route::get('/flashcard-sets/{flashcardSet}/study', [StudySessionController::class, 'study'])->name('flashcard-sets.study');

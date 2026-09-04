@@ -18,10 +18,57 @@
                                 <p class="text-gray-600">{{ $flashcard->answer }}</p>
                             </div>
 
-                            <x-danger-button
-                                x-data=""
-                                x-on:click.prevent="$dispatch('open-modal', 'confirm-flashcard-deletion-{{ $flashcard->id }}')"
-                            >{{ __('Delete') }}</x-danger-button>
+                            <div class="flex gap-2 shrink-0">
+                                <x-secondary-button
+                                    x-data=""
+                                    x-on:click.prevent="$dispatch('open-modal', 'edit-flashcard-{{ $flashcard->id }}')"
+                                >{{ __('Edit') }}</x-secondary-button>
+
+                                <x-danger-button
+                                    x-data=""
+                                    x-on:click.prevent="$dispatch('open-modal', 'confirm-flashcard-deletion-{{ $flashcard->id }}')"
+                                >{{ __('Delete') }}</x-danger-button>
+                            </div>
+
+                            <x-modal name="edit-flashcard-{{ $flashcard->id }}" :show="$errors->any() && (int) old('flashcard_id') === $flashcard->id" focusable>
+                                <form method="post" action="{{ route('flashcards.update', [$flashcardSet, $flashcard]) }}" class="p-6">
+                                    @csrf
+                                    @method('patch')
+                                    <input type="hidden" name="flashcard_id" value="{{ $flashcard->id }}">
+
+                                    <h2 class="text-lg font-medium text-gray-900">
+                                        {{ __('Edit flashcard') }}
+                                    </h2>
+
+                                    @php
+                                        $isThisCardsError = (int) old('flashcard_id') === $flashcard->id;
+                                    @endphp
+
+                                    <div class="mt-6">
+                                        <x-input-label for="question-{{ $flashcard->id }}" :value="__('Question')" />
+                                        <textarea id="question-{{ $flashcard->id }}" name="question" rows="3" required
+                                            class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">{{ $isThisCardsError ? old('question') : $flashcard->question }}</textarea>
+                                        <x-input-error :messages="$isThisCardsError ? $errors->get('question') : []" class="mt-2" />
+                                    </div>
+
+                                    <div class="mt-4">
+                                        <x-input-label for="answer-{{ $flashcard->id }}" :value="__('Answer')" />
+                                        <textarea id="answer-{{ $flashcard->id }}" name="answer" rows="3" required
+                                            class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">{{ $isThisCardsError ? old('answer') : $flashcard->answer }}</textarea>
+                                        <x-input-error :messages="$isThisCardsError ? $errors->get('answer') : []" class="mt-2" />
+                                    </div>
+
+                                    <div class="mt-6 flex justify-end">
+                                        <x-secondary-button x-on:click="$dispatch('close')">
+                                            {{ __('Cancel') }}
+                                        </x-secondary-button>
+
+                                        <x-primary-button class="ms-3">
+                                            {{ __('Save') }}
+                                        </x-primary-button>
+                                    </div>
+                                </form>
+                            </x-modal>
 
                             <x-modal name="confirm-flashcard-deletion-{{ $flashcard->id }}" focusable>
                                 <form method="post" action="{{ route('flashcards.destroy', [$flashcardSet, $flashcard]) }}" class="p-6">
