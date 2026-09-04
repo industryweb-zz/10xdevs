@@ -1,7 +1,7 @@
 ---
 change_id: testing-ownership-authorization-coverage
 title: Ownership & authorization coverage
-status: implemented
+status: impl_reviewed
 created: 2026-07-29
 updated: 2026-07-29
 archived_at: null
