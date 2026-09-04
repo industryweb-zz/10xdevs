@@ -43,7 +43,7 @@ Repo-side artifacts already created as part of this plan: `nixpacks.toml` (pins 
 
 ## Phase 4 — CI/CD
 
-- [x] `.github/workflows/deploy.yml` rewritten: drops `appleboy/ssh-action`, installs the Railway CLI, runs `railway up --service knowledge-test --ci` gated on `secrets.RAILWAY_TOKEN`. Trigger kept as `push: branches: [master]` (matches the repo's actual default branch).
+- [x] `.github/workflows/deploy.yml` rewritten: drops `appleboy/ssh-action`, installs the Railway CLI, runs `railway up --service knowledge-test-app --ci` gated on `secrets.RAILWAY_TOKEN`. Trigger kept as `push: branches: [master]` (matches the repo's actual default branch). NOTE: initially pointed at `--service knowledge-test` (the project name, not the app service name), which broke CI with `Service not found` once `knowledge-test-app` was the actual service alongside Postgres — corrected.
 - [x] Generate a **project-scoped** Railway API token (not account-wide) and add it as the `RAILWAY_TOKEN` secret in GitHub repo settings.
 - [ ] For the first several deploys, run `artisan migrate --force` manually (`railway run php artisan migrate --force`) rather than wiring it into the automated workflow — confirm the Phase 1 backup is active first, every time.
 
