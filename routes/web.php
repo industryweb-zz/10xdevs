@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FlashcardController;
 use App\Http\Controllers\FlashcardSetController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudySessionController;
@@ -21,6 +22,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/flashcard-sets', [FlashcardSetController::class, 'store'])->name('flashcard-sets.store');
     Route::get('/flashcard-sets', [FlashcardSetController::class, 'index'])->name('flashcard-sets.index');
     Route::get('/flashcard-sets/{flashcardSet}', [FlashcardSetController::class, 'show'])->name('flashcard-sets.show');
+
+    Route::delete('/flashcard-sets/{flashcardSet}/flashcards/{flashcard}', [FlashcardController::class, 'destroy'])->name('flashcards.destroy');
 
     Route::get('/flashcard-sets/{flashcardSet}/study', [StudySessionController::class, 'study'])->name('flashcard-sets.study');
     Route::post('/flashcard-sets/{flashcardSet}/results', [StudySessionController::class, 'results'])->name('flashcard-sets.results');
